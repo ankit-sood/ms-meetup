@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="MEETUP_GROUP")
 public class Group implements Serializable{
@@ -19,12 +21,15 @@ public class Group implements Serializable{
 	private Long id;
 	
 	@Column(name="GROUP_NAME")
+	//@JsonProperty("name")
 	private String name;
 	
 	@Column(name="GROUP_DESC")
+	//@JsonProperty("description")
 	private String description;
 	
 	@Column(name="CREATED_BY")
+	//@JsonProperty("createdBy")
 	private String createdBy;
 
 	public Long getId() {
