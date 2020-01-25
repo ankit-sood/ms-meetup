@@ -11,25 +11,22 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="MEETUP_GROUP")
+@Table(name="ms_group")
 public class Group implements Serializable{
 	private static final long serialVersionUID = 8503056830846613415L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="GROUP_ID")
+	@Column(name="group_id")
 	private Long id;
 	
-	@Column(name="GROUP_NAME")
-	//@JsonProperty("name")
+	@Column(name="group_name")
 	private String name;
 	
-	@Column(name="GROUP_DESC")
-	//@JsonProperty("description")
+	@Column(name="group_desc")
 	private String description;
 	
-	@Column(name="CREATED_BY")
-	//@JsonProperty("createdBy")
+	@Column(name="created_by")
 	private String createdBy;
 
 	public Long getId() {

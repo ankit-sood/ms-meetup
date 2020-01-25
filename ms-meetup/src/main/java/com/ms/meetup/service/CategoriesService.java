@@ -1,27 +1,24 @@
 package com.ms.meetup.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ms.meetup.model.Category;
+import com.ms.meetup.repository.CategoryRepository;
 
 @Service
 public class CategoriesService {
-	private static List<String> categoriesList = new ArrayList<>();
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
-	static {
-		categoriesList.add("Technology");
-		categoriesList.add("Sports");
-		categoriesList.add("Cultural");
-		categoriesList.add("Yoga");
+	public List<Category> getCategories() {
+		return categoryRepository.findAll();
 	}
 	
-	public List<String> getCategories() {
-		return categoriesList;
-	}
-	
-	public String addCategory(String category) {
-		categoriesList.add(category);
+	public String addCategory(Category category) {
+		categoryRepository.saveAndFlush(category);
 		return "Success";
 	}
 }

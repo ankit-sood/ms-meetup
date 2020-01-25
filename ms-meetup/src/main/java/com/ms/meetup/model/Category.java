@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CATEGORIES")
-public class Categories implements Serializable{
+@Table(name="category")
+public class Category implements Serializable{
 	private static final long serialVersionUID = -2033507808491370874L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name="category_id")
 	private String id;
 	
-	@Column(name="CATEGORY_NAME")
+	@Column(name="category_name")
 	private String categoryName;
 	
 	public String getId() {

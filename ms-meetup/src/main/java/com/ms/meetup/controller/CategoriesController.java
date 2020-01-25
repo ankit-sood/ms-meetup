@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ms.meetup.model.Category;
 import com.ms.meetup.service.CategoriesService;
 
 @RestController
@@ -19,12 +20,12 @@ public class CategoriesController {
 	private CategoriesService categoriesService;
 	
 	@GetMapping
-	public ResponseEntity<List<String>> getCategories() {
+	public ResponseEntity<List<Category>> getCategories() {
 		return ResponseEntity.ok(categoriesService.getCategories());
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> addCategory(@RequestParam("category") String category) throws Exception {
+	public ResponseEntity<String> addCategory(@RequestBody Category category) throws Exception {
 		return ResponseEntity.ok(categoriesService.addCategory(category));
 	}
 }
