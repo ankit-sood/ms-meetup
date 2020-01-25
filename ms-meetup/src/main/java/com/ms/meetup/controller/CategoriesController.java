@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.ms.meetup.constants.MeetupConstants.CATEGORIES_URL;
 import com.ms.meetup.model.Category;
 import com.ms.meetup.service.CategoriesService;
 
 @RestController
-@RequestMapping(value="/categories")
+@RequestMapping(value=CATEGORIES_URL)
 public class CategoriesController {
 	@Autowired
 	private CategoriesService categoriesService;
