@@ -6,28 +6,29 @@ DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS ms_group;
 
 CREATE TABLE `category` (
-  `category_id` INT NOT NULL,
+  `category_id` INT NOT NULL AUTO_INCREMENT,
   `category_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`category_id`));
   
 CREATE TABLE `location` (
-  `location_id` INT NOT NULL,
+  `location_id` INT NOT NULL AUTO_INCREMENT,
   `location_name` VARCHAR(45) NOT NULL,
   `location_desc` VARCHAR(45) NULL,
   PRIMARY KEY (`location_id`));  
   
 CREATE TABLE `ms_group` (
-  `group_id` INT NOT NULL,
+  `group_id` INT NOT NULL AUTO_INCREMENT,
   `group_name` VARCHAR(45) NULL,
   `group_desc` VARCHAR(45) NULL,
   `created_by` VARCHAR(45) NULL,
   PRIMARY KEY (`group_id`));
   
   CREATE TABLE `user_details` (
-  `user_id` INT NOT NULL,
-  `username` VARCHAR(45) NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
   `email_id` VARCHAR(45) NOT NULL,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`user_id`),
@@ -48,7 +49,7 @@ CREATE TABLE `user_category` (
     REFERENCES `category` (`category_id`));
     
 CREATE TABLE `ketchup_event` (
-  `event_id` INT NOT NULL,
+  `event_id` INT NOT NULL AUTO_INCREMENT,
   `event_name` VARCHAR(45) NOT NULL,
   `event_location` VARCHAR(45) NOT NULL,
   `event_start_time` DATETIME NOT NULL,

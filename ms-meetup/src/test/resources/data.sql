@@ -1,8 +1,8 @@
-INSERT INTO category VALUES(1,'Technology');
-INSERT INTO category VALUES(2,'Sports');
-INSERT INTO category VALUES(3,'Cultural');
-INSERT INTO category VALUES(4,'Wellness');
-INSERT INTO category VALUES(5,'Communication');
+INSERT INTO category(category_name) VALUES('Technology');
+INSERT INTO category(category_name) VALUES('Sports');
+INSERT INTO category(category_name) VALUES('Cultural');
+INSERT INTO category(category_name) VALUES('Wellness');
+INSERT INTO category(category_name) VALUES('Communication');
 
-INSERT INTO location VALUES(1,'Bangalore','Bellandur Area');
-INSERT INTO location VALUES(2,'Mumbai','Andheri Area');
+INSERT INTO location(location_name,location_desc) VALUES('Bangalore','Bellandur Area');
+INSERT INTO location(location_name,location_desc) VALUES('Mumbai','Andheri Area');
