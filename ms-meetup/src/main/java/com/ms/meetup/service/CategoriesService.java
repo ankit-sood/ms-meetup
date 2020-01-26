@@ -1,6 +1,7 @@
 package com.ms.meetup.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,18 @@ public class CategoriesService {
 	public String addCategory(Category category) {
 		categoryRepository.saveAndFlush(category);
 		return "Success";
+	}
+	
+	public Category getCategoriesById(Long categoryId) throws Exception{
+		Optional<Category> categoryOp = categoryRepository.findById(categoryId);
+		if(categoryOp.isPresent()) {
+			return categoryOp.get();
+		} else {
+			throw new Exception("Invalid category id.");
+		}
+	}
+	
+	public List<Category> getCategoriesByIds(List<Long> categoryIds) {
+		return categoryRepository.findAllById(categoryIds);
 	}
 }
