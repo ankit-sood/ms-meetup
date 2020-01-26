@@ -25,9 +25,10 @@ CREATE TABLE `ms_group` (
   
   CREATE TABLE `user_details` (
   `user_id` INT NOT NULL,
-  `username` VARCHAR(45) NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
   `email_id` VARCHAR(45) NOT NULL,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`user_id`),

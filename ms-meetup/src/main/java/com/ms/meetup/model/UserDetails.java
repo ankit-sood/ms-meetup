@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,12 +19,15 @@ public class UserDetails implements Serializable{
 	private static final long serialVersionUID = -4942349360302993720L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private Long userId;
 	
 	@Column(name="username")
 	private String username;
+	
+	@Column(name="password")
+	private String password;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -96,6 +100,16 @@ public class UserDetails implements Serializable{
 	public List<UserCategory> getUserCategories() {
 		return userCategories;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public UserDetails() {	}
 
 	public UserDetails(String username, String firstName, String lastName, String emailId, Long locationId) {
 		super();
