@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="user_details")
@@ -40,12 +44,14 @@ public class UserDetails implements Serializable{
 	
 	@Column(name="location_id",insertable=true,updatable=true)
 	private Long locationId;
-
-	@OneToOne
+	
+	@JsonIgnore
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="location_id",insertable=false,updatable=false)
 	private Location location;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id",insertable=false,updatable=false)
 	private List<UserCategory> userCategories;
 
@@ -101,10 +107,12 @@ public class UserDetails implements Serializable{
 		return userCategories;
 	}
 	
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
-
+	
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
