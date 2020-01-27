@@ -1,10 +1,15 @@
 package com.ms.meetup.service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ms.meetup.model.UserDetails;
@@ -27,6 +32,17 @@ public class UserDetailsService {
 			return userDetailsOp.get();
 		}else {
 			throw new Exception("User Details not found for Id.");
+		}
+	}
+	
+	public Map<Long,UserDetails> getUserDetails(List<Long> userIdList) throws Exception{
+		List<UserDetails> userDetailsList = userDetailsRepository.findAllById(userIdList);
+		if(!CollectionUtils.isEmpty(userDetailsList)) {
+			Map<Long, UserDetails> userDetailsMap = userDetailsList.stream()
+			         .collect(Collectors.toMap(UserDetails::getUserId, Function.identity()));
+			return userDetailsMap;
+		}else {
+			return null;
 		}
 	}
 	

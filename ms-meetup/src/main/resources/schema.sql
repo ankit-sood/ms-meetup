@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS message_thread;
 DROP TABLE IF EXISTS ketchup_event;
 DROP TABLE IF EXISTS user_category;
 DROP TABLE IF EXISTS user_profile;
@@ -82,3 +83,17 @@ CREATE TABLE `ketchup_event` (
   CONSTRAINT `event_location_id`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`location_id`));
+    
+CREATE TABLE `message_thread` (
+  `thread_id` INT NOT NULL AUTO_INCREMENT,
+  `message` VARCHAR(500) NOT NULL,
+  `event_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `posted_at` DATETIME NOT NULL,
+  PRIMARY KEY (`thread_id`),
+   CONSTRAINT `thread_event_id`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `ketchup_event` (`event_id`),
+  CONSTRAINT `thread_user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user_details` (`user_id`));
