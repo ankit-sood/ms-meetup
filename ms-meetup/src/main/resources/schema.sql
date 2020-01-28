@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS message_thread;
+DROP TABLE IF EXISTS event_request;
 DROP TABLE IF EXISTS ketchup_event;
 DROP TABLE IF EXISTS user_category;
 DROP TABLE IF EXISTS user_profile;
@@ -97,3 +98,13 @@ CREATE TABLE `message_thread` (
   CONSTRAINT `thread_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `user_details` (`user_id`));
+    
+CREATE TABLE `event_request` (
+  `request_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`request_id`),
+  CONSTRAINT `request_event_id` FOREIGN KEY (`event_id`) REFERENCES `ketchup_event` (`event_id`),
+  CONSTRAINT `request_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`user_id`)
+) ;

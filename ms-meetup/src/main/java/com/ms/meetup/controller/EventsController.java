@@ -1,17 +1,21 @@
 package com.ms.meetup.controller;
 
-import com.ms.meetup.model.Category;
-import com.ms.meetup.model.Event;
-import com.ms.meetup.service.CategoriesService;
-import com.ms.meetup.service.EventsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import static com.ms.meetup.constants.MeetupConstants.EVENTS_URL;
 
 import java.util.List;
 
-import static com.ms.meetup.constants.MeetupConstants.CATEGORIES_URL;
-import static com.ms.meetup.constants.MeetupConstants.EVENTS_URL;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ms.meetup.model.Event;
+import com.ms.meetup.service.EventsService;
 
 @RestController
 @RequestMapping(value=EVENTS_URL)
