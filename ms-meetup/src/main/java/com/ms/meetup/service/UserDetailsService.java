@@ -35,6 +35,16 @@ public class UserDetailsService {
 		}
 	}
 	
+	public UserDetails getUserDetailsByUsername(String username) throws Exception {
+		List<com.ms.meetup.model.UserDetails> users = userDetailsRepository.findByUsername(username);
+		if (CollectionUtils.isEmpty(users)) {
+			throw new Exception("User not found with username: " + username);
+		}else {
+			com.ms.meetup.model.UserDetails user = users.get(0);
+			return user;
+		}
+	}
+	
 	public Map<Long,UserDetails> getUserDetails(List<Long> userIdList) throws Exception{
 		List<UserDetails> userDetailsList = userDetailsRepository.findAllById(userIdList);
 		if(!CollectionUtils.isEmpty(userDetailsList)) {

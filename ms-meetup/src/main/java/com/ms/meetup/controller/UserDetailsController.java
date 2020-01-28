@@ -2,8 +2,6 @@ package com.ms.meetup.controller;
 
 import java.io.IOException;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +27,15 @@ public class UserDetailsController {
 	public ResponseEntity<UserDetails> getUserDetails(@PathVariable("userId") Long userId) {
 		try {
 			return ResponseEntity.ok(userDetailsService.getUserDetails(userId));
+		} catch(Exception exp) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	@GetMapping("/profile/{username}")
+	public ResponseEntity<UserDetails> getUserDetails(@PathVariable("username") String username) {
+		try {
+			return ResponseEntity.ok(userDetailsService.getUserDetailsByUsername(username));
 		} catch(Exception exp) {
 			return ResponseEntity.noContent().build();
 		}

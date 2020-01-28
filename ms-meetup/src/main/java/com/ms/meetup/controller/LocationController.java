@@ -1,7 +1,5 @@
 package com.ms.meetup.controller;
 
-import static com.ms.meetup.constants.MeetupConstants.CATEGORIES_URL;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
