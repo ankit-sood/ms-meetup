@@ -3,11 +3,7 @@ package com.ms.meetup.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="ketchup_event")
@@ -15,7 +11,7 @@ public class Event implements Serializable{
 	private static final long serialVersionUID = -7780610319328408540L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="event_id")
 	private Long eventId;
 	
@@ -44,7 +40,7 @@ public class Event implements Serializable{
 	private Integer maxPeople;
 	
 	@Column(name="user_id",insertable=true,updatable=true)
-	private Long user_id;
+	private Long userId;
 	
 	@Column(name="categoryId",insertable=true,updatable=true)
 	private Long categoryId;
@@ -116,12 +112,12 @@ public class Event implements Serializable{
 		this.maxPeople = maxPeople;
 	}
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public Long getCategoryId() {
