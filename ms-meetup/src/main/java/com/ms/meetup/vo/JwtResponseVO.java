@@ -8,20 +8,20 @@ public class JwtResponseVO implements Serializable{
 
 	private final String jwttoken;
 	private final Date expiresOn;
-	private final String userId;
+	private final String userName;
 	
 	public JwtResponseVO(String jwttoken, Date expiresOn, String userId) {
 		this.jwttoken = jwttoken;
 		this.expiresOn = expiresOn;
-		this.userId = userId;
+		this.userName = userId;
 	}
 
 	public String getToken() {
 		return this.jwttoken;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
 
 	public Date getExpiresOn() {
