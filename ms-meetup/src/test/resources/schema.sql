@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS ketchup_event;
 DROP TABLE IF EXISTS user_category;
+DROP TABLE IF EXISTS user_profile;
 DROP TABLE IF EXISTS user_details;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS location;
@@ -47,6 +48,16 @@ CREATE TABLE `user_category` (
   CONSTRAINT `category_id`
     FOREIGN KEY (`category_id`)
     REFERENCES `category` (`category_id`));
+    
+CREATE TABLE `user_profile` (
+  `user_profile_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `profile_pic` BLOB NOT NULL,
+  PRIMARY KEY (`user_profile_id`),
+  INDEX `user_id_idx` (`user_id` ASC),
+  CONSTRAINT `user_profile_user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user_details` (`user_id`));
     
 CREATE TABLE `ketchup_event` (
   `event_id` INT NOT NULL AUTO_INCREMENT,

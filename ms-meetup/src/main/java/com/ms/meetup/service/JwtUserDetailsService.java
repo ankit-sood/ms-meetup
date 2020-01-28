@@ -34,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 			return new User(user.getUsername(), user.getPassword(),new ArrayList<>());
 		}
 	}
-
+	
 	public void saveUserDetails(UserDetailsRequestVO userDetailsRequestVO) throws Exception {
 		List<com.ms.meetup.model.UserDetails> users = userDetailsRepository
 				.findByUsername(userDetailsRequestVO.getUsername());

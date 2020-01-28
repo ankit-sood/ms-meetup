@@ -1,5 +1,7 @@
 package com.ms.meetup.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +39,8 @@ public class JwtAuthenticationController {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails);
-		return ResponseEntity.ok(new JwtResponseVO(token));
+		Date expiresOn = jwtTokenUtil.getExpirationDateFromToken(token);
+		return ResponseEntity.ok(new JwtResponseVO(token,expiresOn,userDetails.getUsername()));
 	}
 	
 	@PostMapping("/signup")

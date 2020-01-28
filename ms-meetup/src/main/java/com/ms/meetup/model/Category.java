@@ -16,15 +16,15 @@ public class Category implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="category_id")
-	private String id;
+	private Long id;
 	
 	@Column(name="category_name")
 	private String categoryName;
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getCategoryName() {
