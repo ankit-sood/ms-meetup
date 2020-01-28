@@ -39,7 +39,7 @@ public class Event implements Serializable{
 	@Column(name="maxPeople")
 	private Integer maxPeople;
 	
-	@Column(name="userId",insertable=true,updatable=true)
+	@Column(name="user_id",insertable=true,updatable=true)
 	private Long userId;
 	
 	@Column(name="categoryId",insertable=true,updatable=true)
