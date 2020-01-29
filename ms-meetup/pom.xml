@@ -34,8 +34,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,10 +71,10 @@
 				<version>1.7.0</version>
 				<configuration>
 					<schemaVersion>V2</schemaVersion>
-					<resourceGroup>Hackathon</resourceGroup>
-					<appName>ms-meetup-1</appName>
-					<pricingTier>B1</pricingTier>
-					<region>westeurope</region>
+					<resourceGroup>tech-wizards-codeathon</resourceGroup>
+					<appName>msketchup</appName>
+					<pricingTier>P1v2</pricingTier>
+					<region>centralus</region>
 					<appSettings>
 						<property>
 							<name>JAVA_OPTS</name>

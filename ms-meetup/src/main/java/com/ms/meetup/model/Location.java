@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="location")
+@Table(name="event_location")
 public class Location implements Serializable{
 	private static final long serialVersionUID = -8398214925854918364L;
 
