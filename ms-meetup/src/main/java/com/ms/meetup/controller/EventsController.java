@@ -1,8 +1,6 @@
 package com.ms.meetup.controller;
 
-import com.ms.meetup.model.Category;
 import com.ms.meetup.model.Event;
-import com.ms.meetup.service.CategoriesService;
 import com.ms.meetup.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.ms.meetup.constants.MeetupConstants.CATEGORIES_URL;
 import static com.ms.meetup.constants.MeetupConstants.EVENTS_URL;
 
 @RestController
@@ -49,8 +46,8 @@ public class EventsController {
 	}
 
 	@GetMapping(params = {"categoryId"})
-	public ResponseEntity<List<Event>> getEventsByCategory(@RequestParam("categoryId") Long categoryId){
-		return ResponseEntity.ok(eventService.getEventByCateogry(categoryId));
+	public ResponseEntity<List<Event>> getEventsByCategoryIds(@RequestParam("categoryIds") List<Long> categoryIds){
+		return ResponseEntity.ok(eventService.getEventByCateogryIds(categoryIds));
 	}
 
 	@GetMapping(params = {"ids"})

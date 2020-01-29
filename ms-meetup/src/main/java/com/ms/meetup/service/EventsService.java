@@ -30,8 +30,8 @@ public class EventsService {
 			throw new Exception("Not Found");
 	}
 
-	public List<Event> getEventByCateogry(Long categoryId) {
-		return eventRepository.findByCategoryId(categoryId);
+	public List<Event> getEventByCateogryIds(List<Long> categoryIds) {
+		return eventRepository.findByCategoryIdIn(categoryIds);
 	}
 
 	public List<Event> getEventByIds(List<Long> ids) {
