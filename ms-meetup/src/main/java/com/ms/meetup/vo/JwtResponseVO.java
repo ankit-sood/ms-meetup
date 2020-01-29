@@ -9,11 +9,13 @@ public class JwtResponseVO implements Serializable{
 	private final String jwttoken;
 	private final Date expiresOn;
 	private final String userName;
+	private final Long userId;
 	
-	public JwtResponseVO(String jwttoken, Date expiresOn, String userId) {
+	public JwtResponseVO(String jwttoken, Date expiresOn, String userName, Long userId) {
 		this.jwttoken = jwttoken;
 		this.expiresOn = expiresOn;
-		this.userName = userId;
+		this.userName = userName;
+		this.userId = userId;
 	}
 
 	public String getToken() {
@@ -26,6 +28,10 @@ public class JwtResponseVO implements Serializable{
 
 	public Date getExpiresOn() {
 		return expiresOn;
+	}
+
+	public Long getUserId() {
+		return userId;
 	}
 	
 }
