@@ -31,7 +31,7 @@ public class EventRequestService {
 	
 	public String acceptEventRequests(Long eventId,Long userId) throws Exception {
 		List<EventRequest> eventRequestList = new ArrayList<>();
-		if(userId!=null) {
+		if(userId==null) {
 			eventRequestList = eventRequestRepository.findByEventId(eventId);
 		}else {
 			eventRequestList = eventRequestRepository.findByEventIdAndUserId(eventId, userId);
@@ -61,6 +61,7 @@ public class EventRequestService {
 					UserDetails userDetails = userDetailsMap.get(eventRequest.getUserId());
 					if(userDetails!=null) {
 						eventRequestVO.setUserName(userDetails.getUsername());
+						eventRequestVO.setEventId(eventId);
 					}
 					eventRequestVOList.add(eventRequestVO);
 				}
