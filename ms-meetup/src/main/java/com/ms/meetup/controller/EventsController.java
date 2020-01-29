@@ -28,6 +28,11 @@ public class EventsController {
 //		return ResponseEntity.ok(eventService.getEvents());
 //	}
 //
+	@PatchMapping
+	public ResponseEntity<String> updateEvent(@RequestBody Event event) throws Exception {
+		return ResponseEntity.ok(eventService.updateEvent(event));
+	}
+
 	@PostMapping
 	public ResponseEntity<String> addEvent(@RequestBody Event event) throws Exception {
 		return ResponseEntity.ok(eventService.addEvent(event));
@@ -61,5 +66,7 @@ public class EventsController {
 	public ResponseEntity<List<Event>> getEventsByUserId(@RequestParam("userId") Long userId){
 		return ResponseEntity.ok(eventService.getEventByUserId(userId));
 	}
+
+
 
 }

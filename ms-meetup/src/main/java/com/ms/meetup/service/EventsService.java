@@ -41,4 +41,9 @@ public class EventsService {
 	public List<Event> getEventByUserId(Long userId) {
 		return eventRepository.findByUserId(userId);
 	}
+
+	public String updateEvent(Event event) {
+		eventRepository.saveAndFlush(event);
+		return "Success";
+	}
 }
