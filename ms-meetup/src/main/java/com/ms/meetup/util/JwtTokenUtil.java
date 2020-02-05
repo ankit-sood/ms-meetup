@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -29,6 +28,12 @@ public class JwtTokenUtil implements Serializable {
 		return claims.getSubject();
 		// return getClaimFromToken(token, Claims::getSubject);
 	}
+	
+	// retrieve user id from jwt token
+	public String getUserIdFromToken(String token) {
+		final Claims claims = getAllClaimsFromToken(token);
+		return String.valueOf(claims.get("userId"));
+	}
 
 	// retrieve expiration date from jwt token
 	public Date getExpirationDateFromToken(String token) {
@@ -45,6 +50,7 @@ public class JwtTokenUtil implements Serializable {
 	// generate token for user
 	public String generateToken(com.ms.meetup.model.UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
+		claims.put("userId", String.valueOf(userDetails.getUserId()));
 		return doGenerateToken(claims, userDetails.getUsername());
 	}
 

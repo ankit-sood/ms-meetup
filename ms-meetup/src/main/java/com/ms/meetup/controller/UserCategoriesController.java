@@ -2,6 +2,8 @@ package com.ms.meetup.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,19 +21,24 @@ import com.ms.meetup.vo.UserCategoryRequestVO;
 
 @RestController
 @RequestMapping(MeetupConstants.USER_CATEGORIES_URL)
-public class UserCategoriesController {
+public class UserCategoriesController extends BaseController{
+	@Autowired
+	private HttpServletRequest httpServletRequest;
+	
 	@Autowired
 	private UserCategoriesService userCategoriesService;
 	
 	@GetMapping
 	public ResponseEntity<List<Category>> getUserCategories(@PathVariable("userId") Long userId) {
-		return ResponseEntity.ok(userCategoriesService.getUserCategories(userId));
+		Long userid = getUserId(httpServletRequest);
+		return ResponseEntity.ok(userCategoriesService.getUserCategories(userid));
 	}
 	
 	@PostMapping
 	public ResponseEntity<String> addCategory(@PathVariable("userId") Long userId,
 			@RequestBody List<UserCategoryRequestVO> userCategoryRequestVOList) throws Exception {
-		return ResponseEntity.ok(userCategoriesService.addUserCategories(userId, userCategoryRequestVOList));
+		Long userid = getUserId(httpServletRequest);
+		return ResponseEntity.ok(userCategoriesService.addUserCategories(userid, userCategoryRequestVOList));
 	}
 	
 	@DeleteMapping("/{categoryId}")
