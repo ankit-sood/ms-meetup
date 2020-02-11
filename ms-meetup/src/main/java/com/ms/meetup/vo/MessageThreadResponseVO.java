@@ -36,4 +36,8 @@ public class MessageThreadResponseVO {
 		return threadId;
 	}
 	
+	public void setThreadId(Long threadId) {
+		this.threadId= threadId;
+	}
+	
 }

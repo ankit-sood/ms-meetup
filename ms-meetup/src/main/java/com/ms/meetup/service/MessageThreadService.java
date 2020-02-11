@@ -60,7 +60,9 @@ public class MessageThreadService {
 	
 	private MessageThreadResponseVO getMessageThreadResponseVOFromModel(MessageThread messageThread) {
 		MessageThreadResponseVO messageThreadResponseVO = new MessageThreadResponseVO();
-		
+		messageThreadResponseVO.setMessage(messageThread.getMessage());
+		messageThreadResponseVO.setPostedAt(messageThread.getPostedAt());
+		messageThreadResponseVO.setThreadId(messageThread.getThreadId());
 		return messageThreadResponseVO;
 	}
 }
