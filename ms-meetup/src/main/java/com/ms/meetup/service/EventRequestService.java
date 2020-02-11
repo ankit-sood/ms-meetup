@@ -29,7 +29,7 @@ public class EventRequestService {
 		return "SUCCESS";
 	}
 	
-	public String acceptEventRequests(Long eventId,Long userId) throws Exception {
+	public String acceptEventRequests(Long eventId,Long userId,Integer statusId) throws Exception {
 		List<EventRequest> eventRequestList = new ArrayList<>();
 		if(userId==null) {
 			eventRequestList = eventRequestRepository.findByEventId(eventId);
@@ -38,7 +38,11 @@ public class EventRequestService {
 		}
 		if(!CollectionUtils.isEmpty(eventRequestList)) {
 			for(EventRequest eventRequest:eventRequestList) {
-				eventRequest.setStatus(MeetupConstants.STATUS_ACCEPTED);
+				if(statusId==1) {
+					eventRequest.setStatus(MeetupConstants.STATUS_ACCEPTED);
+				}else if(statusId==2) {
+					eventRequest.setStatus(MeetupConstants.STATUS_REJECTED);
+				}
 			}
 			eventRequestRepository.saveAll(eventRequestList);
 			return "SUCCESS";
@@ -61,6 +65,7 @@ public class EventRequestService {
 					UserDetails userDetails = userDetailsMap.get(eventRequest.getUserId());
 					if(userDetails!=null) {
 						eventRequestVO.setUserName(userDetails.getUsername());
+						eventRequestVO.setEmailId(userDetails.getEmailId());
 						eventRequestVO.setEventId(eventId);
 					}
 					eventRequestVOList.add(eventRequestVO);

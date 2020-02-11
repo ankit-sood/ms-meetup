@@ -29,20 +29,21 @@ public class UserCategoriesController extends BaseController{
 	private UserCategoriesService userCategoriesService;
 	
 	@GetMapping
-	public ResponseEntity<List<Category>> getUserCategories(@PathVariable("userId") Long userId) {
-		Long userid = getUserId(httpServletRequest);
-		return ResponseEntity.ok(userCategoriesService.getUserCategories(userid));
+	public ResponseEntity<List<Category>> getUserCategories(@PathVariable("userId") Long userIdentiry) {
+		Long userId = getUserId(httpServletRequest);
+		return ResponseEntity.ok(userCategoriesService.getUserCategories(userId));
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> addCategory(@PathVariable("userId") Long userId,
+	public ResponseEntity<String> addCategory(@PathVariable("userId") Long userIdentiry,
 			@RequestBody List<UserCategoryRequestVO> userCategoryRequestVOList) throws Exception {
-		Long userid = getUserId(httpServletRequest);
-		return ResponseEntity.ok(userCategoriesService.addUserCategories(userid, userCategoryRequestVOList));
+		Long userId = getUserId(httpServletRequest);
+		return ResponseEntity.ok(userCategoriesService.addUserCategories(userId, userCategoryRequestVOList));
 	}
 	
 	@DeleteMapping("/{categoryId}")
-	public ResponseEntity<String> addCategory(@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId) throws Exception {
+	public ResponseEntity<String> addCategory(@PathVariable("userId") Long userIdentiry,@PathVariable("categoryId") Long categoryId) throws Exception {
+		Long userId = getUserId(httpServletRequest);
 		return ResponseEntity.ok(userCategoriesService.deleteUserCategories(userId, categoryId));
 	}
 }

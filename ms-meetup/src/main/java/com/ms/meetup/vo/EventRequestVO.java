@@ -4,9 +4,11 @@ public class EventRequestVO {
 	private Long requestId;
 	private Long userId;
 	private String userName;
+	private Integer statusId;
 	private String status;
 	private Long eventId;
-	
+	private String emailId;
+
 	public Long getRequestId() {
 		return requestId;
 	}
@@ -37,6 +39,16 @@ public class EventRequestVO {
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
 	}
-	
-	
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public Integer getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
+	}
 }

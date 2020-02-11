@@ -128,4 +128,10 @@ public class UserDetails implements Serializable{
 		this.locationId = locationId;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDetails [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", locationId=" + locationId
+				+ ", location=" + location + ", userCategories=" + userCategories + "]";
+	}
 }

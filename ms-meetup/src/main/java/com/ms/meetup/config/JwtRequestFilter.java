@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.ms.meetup.model.UserDetails;
 import com.ms.meetup.service.JwtUserDetailsService;
 import com.ms.meetup.service.UserDetailsService;
 import com.ms.meetup.util.JwtTokenUtil;
@@ -27,6 +31,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -53,11 +60,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			try {
-				com.ms.meetup.model.UserDetails userDetails = this.userDetailsService.getUserDetailsByUsername(username);
+				HashOperations<String,String,UserDetails> ops = this.redisTemplate.opsForHash();
+				com.ms.meetup.model.UserDetails userDetails = ops.get("USER", username);
+				if(userDetails==null) {
+					userDetails = this.userDetailsService.getUserDetailsByUsername(username);
+					ops.put("USER", userDetails.getUsername(), userDetails);
+				}
 				if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
 					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
 							userDetails, null, new ArrayList<>());
 					request.setAttribute("userId", userDetails.getUserId());
+					request.setAttribute("username", userDetails.getUsername());
 					SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 				}
 			} catch(Exception e) {

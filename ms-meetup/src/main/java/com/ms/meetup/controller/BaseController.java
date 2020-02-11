@@ -8,4 +8,8 @@ public class BaseController {
 		return (Long)request.getAttribute("userId");
 	}
 	
+	public String getUsername(HttpServletRequest request) {
+		return (String)request.getAttribute("username");
+	}
+	
 }

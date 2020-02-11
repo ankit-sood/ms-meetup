@@ -33,7 +33,7 @@ public class EventRequestController {
 	
 	@PutMapping
 	public ResponseEntity<Map<String,String>> acceptEventRequests(@RequestBody EventRequestVO eventRequestVO) throws Exception {
-		String message = eventRequestService.acceptEventRequests(eventRequestVO.getEventId(), eventRequestVO.getUserId());
+		String message = eventRequestService.acceptEventRequests(eventRequestVO.getEventId(), eventRequestVO.getUserId(), eventRequestVO.getStatusId());
 		Map<String,String> successMap = new HashMap<>();
 		successMap.put("message",message);
 		return ResponseEntity.ok(successMap);
